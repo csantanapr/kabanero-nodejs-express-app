@@ -74,9 +74,11 @@ pipeline0-task                  10 hours ago
 ```
 
 ## Grant SecurityContext to appsody-sa. Example PV uses hostPath
-oc -n ${namespace} create sa appsody-sa || true
-oc adm policy add-cluster-role-to-user cluster-admin -z appsody-sa -n ${namespace}
-oc adm policy add-scc-to-user hostmount-anyuid -z appsody-sa -n ${namespace}
+```
+oc -n kabanero create sa appsody-sa || true
+oc adm policy add-cluster-role-to-user cluster-admin -z appsody-sa -n kabanero
+oc adm policy add-scc-to-user hostmount-anyuid -z appsody-sa -n kabanero
+```
 
 
 ```

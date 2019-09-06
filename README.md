@@ -73,12 +73,7 @@ nodejs-loopback-deploy-task     10 hours ago
 pipeline0-task                  10 hours ago
 ```
 
-## Grant SecurityContext to appsody-sa. Example PV uses hostPath
-```
-oc -n kabanero create sa appsody-sa || true
-oc adm policy add-cluster-role-to-user cluster-admin -z appsody-sa -n kabanero
-oc adm policy add-scc-to-user hostmount-anyuid -z appsody-sa -n kabanero
-```
+
 
 
 ```
@@ -99,7 +94,14 @@ tkn pipeline start nodejs-express-build-deploy-pipeline \
         -r git-source=nodejs-express-app-git \
         -r docker-image=nodejs-express-app-image \
         -n kabanero \
-        -s appsody-sa
+        -s kabanero-operator
+```
+Note: If not using the `kabanero-operator` sa, then you can to create a new one with access like this `appsody-sa`
+Then run the pipeline with `-s appsody-sa` instead
+```
+oc -n kabanero create sa appsody-sa || true
+oc adm policy add-cluster-role-to-user cluster-admin -z appsody-sa -n kabanero
+oc adm policy add-scc-to-user hostmount-anyuid -z appsody-sa -n kabanero
 ```
 
 ```

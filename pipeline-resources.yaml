@@ -1,0 +1,20 @@
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: nodejs-express-app-image
+spec:
+  type: image
+  params:
+    - name: url
+      value: docker-registry.default.svc:5000/kabanero/nodejs-express-app
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: nodejs-express-app-git
+spec:
+  type: git
+  params:
+    - name: url
+      value: https://github.com/csantanapr/kabanero-nodejs-express-app

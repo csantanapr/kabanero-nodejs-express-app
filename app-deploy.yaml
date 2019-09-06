@@ -5,13 +5,13 @@ metadata:
 spec:
   # Add fields here
   version: 1.0.0
-  applicationImage: nodejs-express-app 
+  applicationImage: nodejs-express-app
   stack: nodejs-express
   service:
     type: NodePort
     port: 3000
     annotations:
-      prometheus.io/scrape: 'true'
+      prometheus.io/scrape: "true"
   readinessProbe:
     failureThreshold: 12
     httpGet:
